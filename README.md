@@ -32,19 +32,20 @@ http://localhost:8080/eaa2fb77-76b9-4b45-a396-ac588e2f00fe
 
 **Podem acompanhar a troca de status no log do onboarding.**
 
+Como o circuit-breaker esta configurado no projeto de **onboarding**, destaco abaixo
+as alteracoes realizadas para habilidar o cicuitbreaker. 
 
-**Como o circuit-breaker esta configurado no projeto de onboarding as dependências abaixo são necessárias
-Apenas para o projeto de onboarding. O projeto de kyc não precisa destas dependências.**
+O projeto de kyc não precisa de alteracoes referente ao circuit-breaker, ele simula o microservico com falhas.
 
 # Dependências
-Dependências no projeto de onboarding:
+Projeto de onboarding:
 
 1) resilience4j-spring-boot2:2.1.0
 2) spring-boot-starter-aop:3.1.5
 
 # Configuração
 
-**application.yaml** do projeto de onboarding
+**application.yaml** do projeto onboarding
 
 ```yaml
 resilience4j.circuitbreaker:
