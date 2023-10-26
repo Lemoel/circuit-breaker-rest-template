@@ -34,7 +34,6 @@ class KycClientImpl(
         logger.info("Successo na request a KYC")
         logger.info("Alimentando o cache")
 
-        //Gerando um cache em memória
         CACHE[id] = result.toString() + " - CACHE"
 
         return result.toString()
