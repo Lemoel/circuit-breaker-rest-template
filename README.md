@@ -33,5 +33,44 @@ http://localhost:8080/eaa2fb77-76b9-4b45-a396-ac588e2f00fe
 **Podem acompanhar a troca de status no log do onboarding.**
 
 
+**Como o circuit-breaker esta configurado no projeto de onboarding as dependências abaixo são necessárias
+Apenas para o projeto de onboarding. O projeto de kyc não precisa destas dependências.**
 
-# 
+# Dependências
+Dependências no projeto de onboarding:
+
+1) resilience4j-spring-boot2:2.1.0
+2) spring-boot-starter-aop:3.1.5
+
+# Configuração
+
+**application.yaml** do projeto de onboarding
+
+```yaml
+resilience4j.circuitbreaker:
+  instances:
+    onboardingCB:
+      minimumNumberOfCalls: 4
+      slidingWindowSize: 8
+```
+
+Aqui temos as principais partes da configuração do circuit-breaker: 
+
+```kotlin
+
+    @CircuitBreaker(name = "onboardingCB", fallbackMethod = "getProfileFallback")
+    fun getProfile(id: UUID): String {
+        return executeRequest(id)
+    }
+```
+
+Método de **fallbackMethod**:
+
+```kotlin
+ fun getProfileFallback(id: UUID, e: Throwable): String {
+    logger.error("Erro ao buscar perfil no KYC", e)
+    logger.info("KYC OFF")
+    logger.info("Buscando no cache")
+    return CACHE.getOrDefault(id, "CACHE")
+}
+``` 
