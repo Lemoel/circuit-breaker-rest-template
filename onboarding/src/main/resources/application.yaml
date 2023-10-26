@@ -7,7 +7,3 @@ resilience4j.circuitbreaker:
     onboardingCB:
       minimumNumberOfCalls: 4
       slidingWindowSize: 8
-
-feign:
-  circuitbreaker:
-    enabled: true
