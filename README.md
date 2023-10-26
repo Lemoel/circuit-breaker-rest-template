@@ -6,7 +6,7 @@ Uma prova de conceito sobre circuit-breaker com resilience4j
 Realize uma request para o endpoint
 http://localhost:8080/eaa2fb77-76b9-4b45-a396-ac588e2f00fe
 
-Acompanhe o log do microservico de **onboarding**
+#### *Acompanhe o log do microservico de **onboarding***
 
 **a)** O Circuit breaker esta configurado para monitorar as 8 últimas request;
 
