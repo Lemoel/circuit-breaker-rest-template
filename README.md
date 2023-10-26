@@ -6,9 +6,9 @@ Uma prova de conceito sobre circuit-breaker com resilience4j
 Utilizei *spring-boot* nos dois microservicos, então basta localizar estes dois arquivos e executar na sua 
 IDE favorita:
 
-**KycApplication.kt**
+**1 - KycApplication.kt**
 
-**OnboardingApplication.kt**
+**2 - OnboardingApplication.kt**
 
 Depois basta realizar request para o endpoint:
 http://localhost:8080/eaa2fb77-76b9-4b45-a396-ac588e2f00fe
