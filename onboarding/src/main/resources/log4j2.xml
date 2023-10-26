@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config"
+               packages="com.newrelic.logging.log4j2">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [serviceName: credit-onboarding-service] [requestTraceId: %X{requestTraceId}] [country: %X{country}]--- [%15.15t] %-40.40c{1.}: %m%n%ex
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <Console name="NewRelic" target="SYSTEM_OUT">
+            <JsonLayout compact="true" eventEol="true" stacktraceAsString="true">
+                <KeyValuePair key="requestTraceId" value="$${ctx:requestTraceId:-}"/>
+                <KeyValuePair key="country" value="$${ctx:country:-}"/>
+            </JsonLayout>
+        </Console>
+
+        <Routing name="Router">
+            <Routes pattern="$${env:LOG_APPENDER:-CONSOLE}">
+                <Route ref="Console" key="CONSOLE"/>
+                <Route ref="NewRelic" key="NEW_RELIC"/>
+            </Routes>
+        </Routing>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Router"  />
+        </Root>
+    </Loggers>
+</Configuration>

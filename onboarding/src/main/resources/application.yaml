@@ -1,0 +1,13 @@
+server:
+  servlet:
+    context-path: /
+
+resilience4j.circuitbreaker:
+  instances:
+    onboardingCB:
+      minimumNumberOfCalls: 4
+      slidingWindowSize: 8
+
+feign:
+  circuitbreaker:
+    enabled: true
