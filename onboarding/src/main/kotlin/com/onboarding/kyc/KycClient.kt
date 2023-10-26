@@ -21,28 +21,27 @@ class KycClient(
 
     private fun executeRequest(id: UUID): String {
 
-        val url = "http://localhost:8082/kyc/profile/"
+        val urlKyc = "http://localhost:8082/kyc/profile/"
         logger.info("### - Inicio da request ao KYC - ###")
 
-        val result = try {
-            restTemplate.getForObject(url + id, String::class.java)
+        return try {
+            val result = restTemplate.getForObject(urlKyc + id, String::class.java)
+            logger.info("Successo na request a KYC")
+            val cachedResult = result.toString() + " - CACHE"
+            CACHE[id] = cachedResult
+            cachedResult
         } catch (e: Exception) {
             logger.error("Erro ao buscar perfil no KYC")
             throw e
         }
 
-        logger.info("Successo na request a KYC")
-        logger.info("Alimentando o cache")
-
-        CACHE[id] = result.toString() + " - CACHE"
-
-        return result.toString()
     }
 
     fun getProfileFallback(id: UUID, e: Throwable): String {
+        logger.error("Erro ao buscar perfil no KYC", e)
         logger.info("KYC OFF")
         logger.info("Buscando no cache")
-        return CACHE.getOrDefault(id, "CACHE" )
+        return CACHE.getOrDefault(id, "CACHE")
     }
 
 }
