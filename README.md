@@ -14,6 +14,8 @@ http://localhost:8080/eaa2fb77-76b9-4b45-a396-ac588e2f00fe
 
 #### *Acompanhe o log do microservico de **onboarding***
 
+## Como funciona
+
 **a)** O Circuit breaker esta configurado para monitorar as 8 últimas request;
 
 **b)** Quando 4 delas falharem, o circuito será **aberto**;
@@ -30,20 +32,22 @@ http://localhost:8080/eaa2fb77-76b9-4b45-a396-ac588e2f00fe
 
 **h)** O circuito só será **aberto** se 4 requests consecutivas falharem;
 
-**Podem acompanhar a troca de status no log do onboarding.**
+**Podem acompanhar a troca de status nos logs do servico de onboarding.**
 
-Como o circuit-breaker esta configurado no projeto de **onboarding**, destaco abaixo
-as alteracoes realizadas para habilidar o cicuitbreaker. 
+## Configuração do Circuit Breaker
 
-O projeto de kyc não precisa de alteracoes referente ao circuit-breaker, ele simula o microservico com falhas.
+Como o *circuit breaker* esta configurado no projeto de **onboarding**, destaco abaixo
+as alteracoes realizadas para habilitar o *circuit breaker*. 
 
-# Dependências
+O projeto de *kyc* não precisa de alteracoes referente ao *circuit breaker*, ele simula o microservico com falhas.
+
+### Dependências
 Projeto de onboarding:
 
 1) resilience4j-spring-boot2:2.1.0
 2) spring-boot-starter-aop:3.1.5
 
-# Configuração
+### Configuração
 
 **application.yaml** do projeto onboarding
 
