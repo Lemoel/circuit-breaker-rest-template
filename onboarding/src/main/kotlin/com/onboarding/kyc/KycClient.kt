@@ -8,14 +8,14 @@ import org.springframework.web.client.RestTemplate
 import kotlin.collections.HashMap
 
 @Service
-class KycClientImpl(
+class KycClient(
     val restTemplate: RestTemplate
-): KycClientInterface {
+) {
 
     private val CACHE: MutableMap<UUID, String> = HashMap()
 
     @CircuitBreaker(name = "onboardingCB", fallbackMethod = "getProfileFallback")
-    override fun getProfile(id: UUID): String {
+    fun getProfile(id: UUID): String {
         return executeRequest(id)
     }
 
@@ -34,7 +34,6 @@ class KycClientImpl(
         logger.info("Successo na request a KYC")
         logger.info("Alimentando o cache")
 
-        //Gerando um cache em memória
         CACHE[id] = result.toString() + " - CACHE"
 
         return result.toString()
