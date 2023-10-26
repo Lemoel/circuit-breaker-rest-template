@@ -1,4 +1,4 @@
-# circuit-breaker
+# Circuit Breaker
 Uma prova de conceito sobre circuit-breaker usando spring-boot e resilience4j
 
 **Link apresentacao:** https://docs.google.com/presentation/d/1FUo9OMCHZORgrsUe9wb8Gkv61aZfB7zO/edit?usp=sharing&ouid=115169692095866058473&rtpof=true&sd=true
