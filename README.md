@@ -7,7 +7,7 @@ Uma prova de conceito sobre circuit breaker usando **spring-boot e resilience4j*
 
 ## Como testar
 
-Utilizei *spring-boot* nos dois microservicos, então basta localizar estes dois arquivos e executar na sua 
+Utilizei *spring-boot* nos dois microservicos, então basta localizar os arquivos abaixo e executar na sua 
 IDE favorita:
 
         1 - KycApplication.kt        
