@@ -1,5 +1,8 @@
-# circuit-breaker-rest-template
-Uma prova de conceito sobre circuit-breaker com resilience4j
+# circuit-breaker
+Uma prova de conceito sobre circuit-breaker usando spring-boot e resilience4j
+
+**Link apresentacao:** https://docs.google.com/presentation/d/1FUo9OMCHZORgrsUe9wb8Gkv61aZfB7zO/edit?usp=sharing&ouid=115169692095866058473&rtpof=true&sd=true
+**Resilience4j:** https://resilience4j.readme.io/
 
 ## Como testar
 
@@ -78,5 +81,4 @@ Método de **fallbackMethod**:
     logger.info("Buscando no cache")
     return CACHE.getOrDefault(id, "CACHE")
 }
-``` 
-**Link apresentacao:** https://docs.google.com/presentation/d/1FUo9OMCHZORgrsUe9wb8Gkv61aZfB7zO/edit?usp=sharing&ouid=115169692095866058473&rtpof=true&sd=true
+```
